@@ -17,6 +17,8 @@ import {
   Text,
   useColorScheme,
   View,
+  NativeModules,
+  TouchableOpacity,
 } from 'react-native';
 
 import {
@@ -62,9 +64,17 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const {CalendarModule} = NativeModules;
+  const onPress = () => {
+    CalendarModule.createCalendarEvent('testName', 'testLocation');
+  };
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <TouchableOpacity onPress={onPress}>
+        <Text>ここをタップ</Text>
+      </TouchableOpacity>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
